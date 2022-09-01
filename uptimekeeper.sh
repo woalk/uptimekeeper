@@ -17,6 +17,19 @@
 SAVE_PWD=${1:-"${HOME}/.uptimekeeper"}
 M_DELIM=${2:-"-"}
 
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    echo """USAGE: $0 (-h|--help) [directory] [month-delimiter]
+OPTIONS:
+  -h | --help      Display this usage message.
+PARAMETERS:
+  directory:       The directory to save the tracking files to.
+                   DEFAULT: '\$HOME/.uptimekeeper'
+  month-delimiter: The delimiter between year and month.
+                   Use '/' to create directories for each year.
+                   DEFAULT: '-' (e.g. 2022-09.txt)"""
+    exit 0
+fi
+
 echo "Started $0. PID: $$"
 
 if [ ! -d "$SAVE_PWD" ]; then
