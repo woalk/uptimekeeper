@@ -48,6 +48,5 @@ onExit() {
 }
 
 trap onExit EXIT
-read -u 2
-echo "ERROR: Read >0 from stderr" >&2
+sleep infinity
 exit 1
