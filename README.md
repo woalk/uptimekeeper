@@ -33,6 +33,18 @@ PARAMETERS:
                    DEFAULT: '.txt'
 ```
 
+## Tips
+
+If you want to upload your uptimes of multiple computers to a cloud service as backup,
+or if you share the target directory of uptimekeeper with multiple machines via a network mount,
+it is recommended to add a unique identifier for each machine to either the *directory* or the *suffix* parameter.
+
+For example, you can append the hostname:
+```sh
+/path/to/uptimekeeper.sh $HOME/.uptimekeeper '-' "-$(hostname).txt"
+```
+This will create uptimekeeper files like `/home/myuser/.uptimekeeper/2022-09-myhostname.txt`.
+
 ## License
 
 ```
