@@ -20,7 +20,7 @@ A new uptime file is created every month.
 ## Script usage
 
 ```
-USAGE: /path/to/uptimekeeper.sh (-h|--help) [directory] [month-delimiter]
+USAGE: ./uptimekeeper.sh (-h|--help) [directory] [month-delimiter] [suffix]
 OPTIONS:
   -h | --help      Display this usage message.
 PARAMETERS:
@@ -29,6 +29,8 @@ PARAMETERS:
   month-delimiter: The delimiter between year and month.
                    Use '/' to create directories for each year.
                    DEFAULT: '-' (e.g. 2022-09.txt)
+  suffix:          A suffix to append to every file name.
+                   DEFAULT: '.txt'
 ```
 
 ## License

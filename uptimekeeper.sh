@@ -16,9 +16,10 @@
 
 SAVE_PWD=${1:-"${HOME}/.uptimekeeper"}
 M_DELIM=${2:-"-"}
+FILE_SUFFIX=${3:-".txt"}
 
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-    echo """USAGE: $0 (-h|--help) [directory] [month-delimiter]
+    echo """USAGE: $0 (-h|--help) [directory] [month-delimiter] [suffix]
 OPTIONS:
   -h | --help      Display this usage message.
 PARAMETERS:
@@ -26,7 +27,9 @@ PARAMETERS:
                    DEFAULT: '\$HOME/.uptimekeeper'
   month-delimiter: The delimiter between year and month.
                    Use '/' to create directories for each year.
-                   DEFAULT: '-' (e.g. 2022-09.txt)"""
+                   DEFAULT: '-' (e.g. 2022-09.txt)
+  suffix:          A suffix to append to every file name.
+                   DEFAULT: '.txt'"""
     exit 0
 fi
 
@@ -41,7 +44,7 @@ onExit() {
     if [[ ${M_DELIM} == *"/"* ]]; then
         mkdir -p "${SAVE_PWD}/$(date +%Y${M_DELIM})"
     fi
-    ((date -I | tr -d '\n') && uptime) >> "${SAVE_PWD}/$(date +%Y${M_DELIM}%m).txt"
+    ((date -I | tr -d '\n') && uptime) >> "${SAVE_PWD}/$(date +%Y${M_DELIM}%m)${FILE_SUFFIX}"
 }
 
 trap onExit EXIT
