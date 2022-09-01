@@ -15,6 +15,7 @@
 # limitations under the License.
 
 SAVE_PWD=${1:-"${HOME}/.uptimekeeper"}
+M_DELIM=${2:-"-"}
 
 echo "Started $0. PID: $$"
 
@@ -24,7 +25,10 @@ if [ ! -d "$SAVE_PWD" ]; then
 fi
 
 onExit() {
-    ((date -I | tr -d '\n') && uptime) >> "${SAVE_PWD}/$(date +%Y-%m).txt"
+    if [[ ${M_DELIM} == *"/"* ]]; then
+        mkdir -p "${SAVE_PWD}/$(date +%Y${M_DELIM})"
+    fi
+    ((date -I | tr -d '\n') && uptime) >> "${SAVE_PWD}/$(date +%Y${M_DELIM}%m).txt"
 }
 
 trap onExit EXIT
